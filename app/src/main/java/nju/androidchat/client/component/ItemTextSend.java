@@ -2,9 +2,8 @@ package nju.androidchat.client.component;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,6 +22,19 @@ public class ItemTextSend extends LinearLayout implements View.OnLongClickListen
     private Context context;
     private UUID messageId;
     @Setter private OnRecallMessageRequested onRecallMessageRequested;
+    private ImageView imageView;
+
+    //图片send
+    public ItemTextSend(String pic, Context context, String text, UUID messageId, OnRecallMessageRequested onRecallMessageRequested) {
+        super(context);
+        this.context = context;
+        inflate(context, R.layout.item_img_send, this);
+
+        this.imageView = findViewById(R.id.chat_pic);
+        PictureUtil.setImg(imageView, pic);
+
+        this.messageId = messageId;
+    }
 
     public ItemTextSend(Context context, String text, UUID messageId, OnRecallMessageRequested onRecallMessageRequested) {
         super(context);
@@ -59,8 +71,5 @@ public class ItemTextSend extends LinearLayout implements View.OnLongClickListen
                 .show();
 
         return true;
-
-
     }
-
 }

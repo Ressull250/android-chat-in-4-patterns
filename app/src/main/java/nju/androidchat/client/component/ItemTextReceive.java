@@ -1,10 +1,7 @@
 package nju.androidchat.client.component;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.util.AttributeSet;
-import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,6 +21,19 @@ public class ItemTextReceive extends LinearLayout {
     private Context context;
     private UUID messageId;
     private OnRecallMessageRequested onRecallMessageRequested;
+    private ImageView imageView;
+
+    //图片接受
+    public ItemTextReceive(String pic, Context context, String text, UUID messageId) {
+        super(context);
+        this.context = context;
+        inflate(context, R.layout.item_img_receive, this);
+
+        this.imageView = findViewById(R.id.chat_receive_pic);
+        PictureUtil.setImg(imageView, pic);
+
+        this.messageId = messageId;
+    }
 
 
     public ItemTextReceive(Context context, String text, UUID messageId) {
